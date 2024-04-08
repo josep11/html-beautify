@@ -1,6 +1,6 @@
-# Beautify HTML
+# HTML Beautify
 
-Based on the [original work](https://github.com/ivanweiler/beautify-html) by [Ivan Weiler](https://github.com/ivanweiler), I am here to bring it to the [Packagist](https://packagist.org/) only, no new feature is added.
+Based on the [Beautify HTML](https://github.com/ivanweiler/beautify-html) by [Ivan Weiler](https://github.com/ivanweiler), I'm here to bring it to the [Packagist](https://packagist.org/) only, no feature is added.
 
 Please see the original [`README`](README.org.md) for details.
 
@@ -10,10 +10,11 @@ composer require wongyip/html-beautify
 ```
 
 ## Usage
-The same usage with the original html-beautify is maintained, except of the
-namespaced classname. However, in most cases (at least in my cases), the 
-beautifier would be used once only within the whole request/command life cycle,
-so the static `init()` syntax is my all-time favourite.    
+The same usage with the original [Beautify HTML](https://github.com/ivanweiler/beautify-html)
+is maintained, except of the namespaced classname. In most cases (at least in most of my cases),
+`Beautify::class` will be used once only within the whole request/command life cycle, so the
+static `init()` syntax is my all-time favourite.
+
 ```php
 use \Wongyip\HTML\Beautify;
 
@@ -22,14 +23,14 @@ $html = <<<HTML
     <body><div class="row col-sm12"><ol><li></li><li></li><li></li></ol></div></body></html>
     HTML;
 
+# One-liner
+echo Beautify::init()->beautify($html);
+
 # The good old way.
 $beautifier = new Beautify();
 echo $beautifier->beautify($html);
 
-# Same output with the added static methods
-echo Beautify::init()->beautify($html);
-
-# Same output, but the syntax is not my favour at all. 
+# Same output, but I tend to avoid this syntax, as the readability drops when arguments added. 
 echo (new Beautify())->beautify($html);
 
 ```
@@ -59,18 +60,23 @@ _Output:_
 ```php
 use \Wongyip\HTML\Beautify;
 
-# Set on instantiate.
+# All options are optional.
 $options = [
     'indent_inner_html'     => false,
     'indent_char'           => " ",
-    'indent_size'           => 4,
+	'indent_size'           => 4,
     'wrap_line_length'      => 32768,
     'unformatted'           => ['code', 'pre'],
     'preserve_newlines'     => false,
     'max_preserve_newlines' => 32768,
     'indent_scripts'        => 'normal',
 ];
+
+# Set on instantiate.
 $beautifier = new Beautify($options);
+
+# Or use it once only.
+echo Beautify::init($options)->beautify($html);
 
 # Update
 $beautifier->options(['indent_size' => 2]);
@@ -83,6 +89,6 @@ $options = $beautifier->options();
 ```bash
 composer create-project wongyip/html-beautify
 cd html-beautify
-composer install
+composet install
 php demo/demo.php
 ```
