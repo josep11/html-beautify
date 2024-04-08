@@ -1,27 +1,88 @@
-Beautify Html
-=============
+# Beautify HTML
 
-Beautify_Html is (almost) direct PHP port of [beautify-html.js](https://github.com/beautify-web/js-beautify/blob/56fac25c86e352d67e6250966695e617d58e92d8/js/lib/beautify-html.js), part of [JS Beautifier](https://github.com/beautify-web/js-beautify/) project.
-It indents HTML code, making it beautiful.
+Based on the [original work](https://github.com/ivanweiler/beautify-html) by [Ivan Weiler](https://github.com/ivanweiler), I am here to bring it to the [Packagist](https://packagist.org/) only, no new feature is added.
 
-Done for fun, no profit, MIT license.
+Please see the original [`README`](README.org.md) for details.
+
+## Installation
+```sh
+composer require wongyip/html-beautify
+```
 
 ## Usage
+The same usage with the original html-beautify is maintained, except of the
+namespaced classname. However, in most cases (at least in my cases), the 
+beautifier would be used once only within the whole request/command life cycle,
+so the static `init()` syntax is my all-time favourite.    
+```php
+use \Wongyip\HTML\Beautify;
+
+$html = <<<HTML
+    <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Title</title></head>
+    <body><div class="row col-sm12"><ol><li></li><li></li><li></li></ol></div></body></html>
+    HTML;
+
+# The good old way.
+$beautifier = new Beautify();
+echo $beautifier->beautify($html);
+
+# Same output with the added static methods
+echo Beautify::init()->beautify($html);
+
+# Same output, but the syntax is not my favour at all. 
+echo (new Beautify())->beautify($html);
 
 ```
-$html = '<ul><li>Html</li><li>to</li><li>indent</li></ul>';
-$beautify = new Beautify_Html(array(
-  'indent_inner_html' => false,
-  'indent_char' => " ",
-  'indent_size' => 2,
-  'wrap_line_length' => 32786,
-  'unformatted' => ['code', 'pre'],
-  'preserve_newlines' => false,
-  'max_preserve_newlines' => 32786,
-  'indent_scripts'	=> 'normal' // keep|separate|normal
-));
+_Output:_
+```html
+<!DOCTYPE html>
+<html lang="en">
 
-echo $beautify->beautify($html);
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
 
+<body>
+<div class="row" style="color: brown;">
+    <ul>
+        <li>Hello</li>
+        <li>World!</li>
+    </ul>
+</div>
+</body>
+
+</html>
 ```
-All options are optional.
+
+## Options
+```php
+use \Wongyip\HTML\Beautify;
+
+# Set on instantiate.
+$options = [
+    'indent_inner_html'     => false,
+    'indent_char'           => " ",
+    'indent_size'           => 4,
+    'wrap_line_length'      => 32768,
+    'unformatted'           => ['code', 'pre'],
+    'preserve_newlines'     => false,
+    'max_preserve_newlines' => 32768,
+    'indent_scripts'        => 'normal',
+];
+$beautifier = new Beautify($options);
+
+# Update
+$beautifier->options(['indent_size' => 2]);
+
+# Get
+$options = $beautifier->options();
+```
+
+## Try it out
+```bash
+composer create-project wongyip/html-beautify
+cd html-beautify
+composer install
+php demo/demo.php
+```
