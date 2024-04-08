@@ -37,6 +37,7 @@ class Beautify extends OriginalBeautifyHTML
      * @param array|null $options
      * @param callable|null $cssBeautify
      * @param callable|null $jsBeautify
+     * @return static
      */
     public static function init(array $options = null, callable $cssBeautify = null, callable $jsBeautify = null): static
     {

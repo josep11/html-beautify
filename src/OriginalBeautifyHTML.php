@@ -31,9 +31,9 @@ namespace Wongyip\HTML;
  *
  * PHP port by Ivan Weiler, 2014
  *
- * Edited by Wongyip, 2024: some properties and methods' visibility
- * are changed for the extendability of this class.
- *
+ * Edited by Wongyip, 2024, originally name Beautify_Html::class, some
+ * properties and methods' visibility are changed for the extendability
+ * of this class,
  */
 class OriginalBeautifyHTML
 {
