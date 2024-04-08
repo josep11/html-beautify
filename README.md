@@ -64,7 +64,7 @@ use \Wongyip\HTML\Beautify;
 $options = [
     'indent_inner_html'     => false,
     'indent_char'           => " ",
-	'indent_size'           => 4,
+    'indent_size'           => 4,
     'wrap_line_length'      => 32768,
     'unformatted'           => ['code', 'pre'],
     'preserve_newlines'     => false,
@@ -89,6 +89,6 @@ $options = $beautifier->options();
 ```bash
 composer create-project wongyip/html-beautify
 cd html-beautify
-composet install
+composer install
 php demo/demo.php
 ```
