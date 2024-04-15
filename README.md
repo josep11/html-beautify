@@ -11,9 +11,9 @@ composer require wongyip/html-beautify
 
 ## Usage
 The same usage with the original [Beautify HTML](https://github.com/ivanweiler/beautify-html)
-is maintained, except of the namespaced classname. In most cases (at least in most of my cases),
-`Beautify::class` will be used once only within the whole request/command life cycle, so the
-static `html()` method is added for state-less usage.
+is maintained, except of the namespaced classname. As in most cases (at least in most of my
+cases), `Beautify::class` will be used once only within the whole request/command life cycle,
+so a static `Beautify::html()` method is added to format HTML in a state-less manner.
 
 ```php
 use \Wongyip\HTML\Beautify;
@@ -26,17 +26,14 @@ $html = <<<HTML
 # State-less
 echo Beautify::html($html);
 
-# The good old way.
+# Reusable
 $beautifier = new Beautify();
 echo $beautifier->beautify($html);
 
-# Same output, but I tend to avoid this syntax, as the readability drops when arguments added. 
-echo (new Beautify())->beautify($html);
-
-# Using static constructor.
+# Alternative static constructor
 echo Beautify::init()->beautify($html);
 ```
-_All the above `echo` statements output the same HTML string:_
+_All the above `echo` statements output the same HTML below:_
 ```html
 <!DOCTYPE html>
 <html lang="en">
