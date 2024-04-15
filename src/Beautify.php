@@ -32,7 +32,21 @@ class Beautify extends OriginalBeautifyHTML
     }
 
     /**
-     * Static constructor.
+     * State-less method.
+     *
+     * @param string $input
+     * @param array|null $options
+     * @param callable|null $cssBeautify
+     * @param callable|null $jsBeautify
+     * @return string
+     */
+    public static function html(string $input, array $options = null, callable $cssBeautify = null, callable $jsBeautify = null): string
+    {
+        return Beautify::init($options, $cssBeautify, $jsBeautify)->beautify($input);
+    }
+
+    /**
+     * Instantiate a HTML Beautifier.
      *
      * @param array|null $options
      * @param callable|null $cssBeautify

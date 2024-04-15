@@ -13,7 +13,7 @@ composer require wongyip/html-beautify
 The same usage with the original [Beautify HTML](https://github.com/ivanweiler/beautify-html)
 is maintained, except of the namespaced classname. In most cases (at least in most of my cases),
 `Beautify::class` will be used once only within the whole request/command life cycle, so the
-static `init()` syntax is my all-time favourite.
+static `html()` method is added for state-less usage.
 
 ```php
 use \Wongyip\HTML\Beautify;
@@ -23,8 +23,8 @@ $html = <<<HTML
     <body><div class="row col-sm12"><ol><li></li><li></li><li></li></ol></div></body></html>
     HTML;
 
-# One-liner
-echo Beautify::init()->beautify($html);
+# State-less
+echo Beautify::html($html);
 
 # The good old way.
 $beautifier = new Beautify();
@@ -33,8 +33,10 @@ echo $beautifier->beautify($html);
 # Same output, but I tend to avoid this syntax, as the readability drops when arguments added. 
 echo (new Beautify())->beautify($html);
 
+# Using static constructor.
+echo Beautify::init()->beautify($html);
 ```
-_Output:_
+_All the above `echo` statements output the same HTML string:_
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -75,13 +77,10 @@ $options = [
 # Set on instantiate.
 $beautifier = new Beautify($options);
 
-# Or use it once only.
-echo Beautify::init($options)->beautify($html);
-
-# Update
+# Update option(s)
 $beautifier->options(['indent_size' => 2]);
 
-# Get
+# Get options
 $options = $beautifier->options();
 ```
 
