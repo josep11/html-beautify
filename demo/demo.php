@@ -17,10 +17,8 @@ $options = [
     'indent_scripts'        => 'normal', // keep|separate|normal
 ];
 
-$beautifier = new Beautify($options);
-
-$output = $beautifier->beautify($html);
+$output = Beautify::html($html, $options);
 
 $line = str_repeat('-', 80);
 
-echo "\nInput:\n$line\n\n$html\n\nBeautified:\n$line\n\n$output\n\n";
+echo "\nInput:\n$line\n\n$html\n\nOutput:\n$line\n\n$output\n\n";
