@@ -10,6 +10,28 @@ namespace Wongyip\HTML;
 class Beautify extends OriginalBeautifyHTML
 {
     /**
+     * Default Options.
+     *
+     * @var array
+     */
+    public static array $defaultOptions = [
+        'indent_inner_html'     => false,
+        'indent_char'           => " ",
+        'indent_size'           => 4,
+        'wrap_line_length'      => 32768,
+        'unformatted'           => [
+            // Derived from the original default, with h1-h6 removed.
+            'a', 'span', 'bdo', 'em', 'strong', 'dfn', 'code', 'samp', 'kbd', 'var', 'cite', 'abbr',
+            'acronym', 'q', 'sub', 'sup', 'tt', 'i', 'b', 'big', 'small', 'u', 's', 'strike', 'font',
+            'ins', 'del', 'pre', 'address', 'dt',
+        ],
+        'preserve_newlines'     => false,
+        'max_preserve_newlines' => 32768,
+        'indent_scripts'        => 'normal',
+    ];
+
+
+    /**
      * Instantiate a HTML Beautifier.
      *
      * @param array|null $options
@@ -18,17 +40,7 @@ class Beautify extends OriginalBeautifyHTML
      */
     public function __construct(array $options = null, callable $cssBeautify = null, callable $jsBeautify = null)
     {
-        $defaults = [
-            'indent_inner_html'     => false,
-            'indent_char'           => " ",
-            'indent_size'           => 4,
-            'wrap_line_length'      => 32768,
-            'unformatted'           => ['code', 'pre'],
-            'preserve_newlines'     => false,
-            'max_preserve_newlines' => 32768,
-            'indent_scripts'        => 'normal',
-        ];
-        parent::__construct(array_merge($defaults, $options ?? []), $cssBeautify, $jsBeautify);
+        parent::__construct(array_merge(self::$defaultOptions, $options ?? []), $cssBeautify, $jsBeautify);
     }
 
     /**

@@ -1,8 +1,6 @@
 # HTML Beautify
 
-Based on the [Beautify HTML](https://github.com/ivanweiler/beautify-html) by [Ivan Weiler](https://github.com/ivanweiler), I'm here to bring it to the [Packagist](https://packagist.org/) only, no feature is added.
-
-Please see the original [`README`](README.org.md) for details.
+Based on the [Beautify HTML](https://github.com/ivanweiler/beautify-html) by [Ivan Weiler](https://github.com/ivanweiler), I'm here to bring it to the [Packagist](https://packagist.org/) only, no feature is added. Please find the original [`README`](README.org.md) for details.
 
 ## Installation
 ```sh
