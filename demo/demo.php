@@ -11,9 +11,15 @@ $options = [
     'indent_char'           => " ",
     'indent_size'           => 4,
     'wrap_line_length'      => 32768,
-    'unformatted'           => ['code', 'pre'],
+    'inline_tags'           => [
+        // Derived from the original default, with h1-h6 removed.
+        'a',
+        'span', 'bdo', 'em', 'strong', 'dfn', 'code', 'samp', 'kbd', 'var', 'cite', 'abbr',
+        'acronym', 'q', 'sub', 'sup', 'tt', 'i', 'b', 'big', 'small', 'u', 's', 'strike', 'font',
+        'ins', 'del', 'pre', 'address', 'dt', // 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'
+    ],
     'preserve_newlines'     => false,
-    'max_preserve_newlines' => 32768,
+    'preserve_newlines_max' => 32768,
     'indent_scripts'        => 'normal', // keep|separate|normal
 ];
 

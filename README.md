@@ -1,6 +1,6 @@
 # HTML Beautify
 
-Based on the [Beautify HTML](https://github.com/ivanweiler/beautify-html) by [Ivan Weiler](https://github.com/ivanweiler), I'm here to bring it to the [Packagist](https://packagist.org/) only, no feature is added. Please find the original [`README`](README.org.md) for details.
+Based on the [Beautify HTML](https://github.com/ivanweiler/beautify-html) by [Ivan Weiler](https://github.com/ivanweiler), I'm here to bring it to the [Packagist](https://packagist.org/) only, no feature is added. Please find the original [`README`](org/README.md) for details.
 
 ## Installation
 ```sh
@@ -65,7 +65,7 @@ $options = [
     'wrap_line_length'      => 32768,
     'unformatted'           => ['code', 'pre'],
     'preserve_newlines'     => false,
-    'max_preserve_newlines' => 32768,
+    'preserve_newlines_max' => 32768,
     'indent_scripts'        => 'normal',
 ];
 
