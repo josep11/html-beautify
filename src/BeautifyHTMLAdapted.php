@@ -854,13 +854,8 @@ class BeautifyHTMLAdapted
                         else {
                             // simply indent the string otherwise
 
-                            $matches = array();
-                            preg_match('/^\s*/', $text, $matches);
-                            $white = isset($matches[0]) ? $matches[0] : null;
-
-                            $matches = array();
-                            preg_match('/[^\n\r]*$/', $white, $matches);
-                            $dummy = isset($matches[0]) ? $matches[0] : null;
+                            $white = preg_match('/^\s*/', $text, $matches) ? $matches[0] : null;
+                            $dummy = preg_match('/[^\n\r]*$/', $white, $matches) ? $matches[0] : null;
 
                             $_level = count(explode($this->indentString, $dummy)) - 1;
                             $reindent = $this->getFullIndent($script_indent_level - $_level);
