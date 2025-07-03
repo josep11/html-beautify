@@ -54,16 +54,11 @@ class BeautifyHTMLAdapted
 
     /**
      * Current options.
-     * @var array
      */
     protected array $options = [];
-    /**
-     * @var Closure
-     */
+    
     protected Closure $cssBeautify;
-    /**
-     * @var Closure
-     */
+    
     protected Closure $jsBeautify;
 
     // Private runtime variables -----------------------------------------------
@@ -71,37 +66,27 @@ class BeautifyHTMLAdapted
     /**
      * Reflects the current Parser mode: TAG/CONTENT
      * @todo Change to bool.
-     * @var string
      */
     private string $currentMode = 'CONTENT';
     /**
-     * @var bool|mixed
      * @see static::optionsChanged()
      */
     private bool $indentContent;
-    /**
-     * @var int
-     */
+    
     private int $indentLevel = 0;
     /**
-     * @var string
      * @see static::optionsChanged()
      */
     private string $indentString;
     /**
      * Input HTML.
-     *
-     * @var string
      */
     private string $input =  '';
     /**
      * count to see if wrap_line_length was exceeded
-     * @var int
      */
     private int $lineCharCount = 0;
-    /**
-     * @var int
-     */
+    
     private int $newLines = 0;
     /**
      * @var array|string[]
@@ -109,38 +94,21 @@ class BeautifyHTMLAdapted
     private array $output = [];
     /**
      * Parser position
-     * @var int
      */
     private int $pos = 0;
-    /**
-     * @var string
-     */
     private string $tagType = '';
-    /**
-     * @var Token
-     */
     private Token $tokenLast;
-    /**
-     * @var string
-     */
     private string $____tokenLastText = '';
-    /**
-     * @var string
-     */
     private string $____tokenLastType = '';
     /**
      * An object to hold tags, their position, and their parent-tags, initiated with default values
-     *
-     * @var array
      */
     private array $tags = [
         'parent'      => 'parent1',
         'parentcount' => 1,
         'parent1'     => ''
     ];
-    /**
-     * @var int
-     */
+    
     private int $inputLength;
 
     /**
@@ -168,9 +136,6 @@ class BeautifyHTMLAdapted
 
     /**
      * (function to return comment content in its entirety)
-     *
-     * @param int $posStart
-     * @return string
      */
     private function getComment(int $posStart): string
     {
@@ -223,8 +188,6 @@ class BeautifyHTMLAdapted
 
     /**
      * (function to capture regular content between tags)
-     *
-     * @return string|Token
      */
     private function getContent(): string|Token
     {
@@ -283,10 +246,6 @@ class BeautifyHTMLAdapted
         return $content;
     }
 
-    /**
-     * @param int $level
-     * @return string
-     */
     private function getFullIndent(int $level): string
     {
         $level = $this->indentLevel + $level || 0;
@@ -298,9 +257,6 @@ class BeautifyHTMLAdapted
 
     /**
      * (function to record a tag and its parent in this.tags Object)
-     *
-     * @param string $tag
-     * @return void
      */
     private function recordTag(string $tag): void
     {
@@ -318,9 +274,6 @@ class BeautifyHTMLAdapted
 
     /**
      * (function to retrieve the opening tag to the corresponding closer)
-     *
-     * @param string $tag
-     * @return void
      */
     private function retrieveTag(string $tag): void
     {
@@ -346,10 +299,6 @@ class BeautifyHTMLAdapted
         }
     }
 
-    /**
-     * @param string $tag
-     * @return void
-     */
     private function indentToTag(string $tag): void
     {
         // Match the indentation level to the last use of this tag, but don't remove it.
@@ -370,10 +319,6 @@ class BeautifyHTMLAdapted
 
     /**
      * (function to return unformatted content in its entirety)
-     *
-     * @param string $delimiter
-     * @param bool|string $orig_tag
-     * @return string
      */
     private function getUnformatted(string $delimiter, bool|string $orig_tag = false): string
     {
@@ -437,9 +382,6 @@ class BeautifyHTMLAdapted
 
     /**
      * (function to get a full tag and parse its type)
-     *
-     * @param bool $peek
-     * @return string|Token
      */
     private function getTag(bool $peek = false): string|Token
     {
@@ -618,8 +560,6 @@ class BeautifyHTMLAdapted
 
     /**
      * (initial handler for token-retrieval)
-     *
-     * @return Token|null
      */
     private function getToken(): ?Token
     {
@@ -640,11 +580,6 @@ class BeautifyHTMLAdapted
         return null;
     }
 
-    /**
-     * @param array $arr
-     * @param bool|null $force
-     * @return void
-     */
     private function printNewLine(array &$arr, ?bool $force = null)
     {
         $this->lineCharCount = 0;
@@ -667,11 +602,7 @@ class BeautifyHTMLAdapted
             $this->lineCharCount += strlen($this->indentString);
         }
     }
-
-    /**
-     * @param string $text
-     * @return void
-     */
+    
     private function printToken(string $text): void
     {
         if (!empty($text)) {
@@ -683,10 +614,6 @@ class BeautifyHTMLAdapted
         $this->printTokenRaw($text);
     }
 
-    /**
-     * @param string $text
-     * @return void
-     */
     private function printTokenRaw(string $text): void
     {
         if ($text && $text !== '') {
@@ -705,9 +632,6 @@ class BeautifyHTMLAdapted
         $this->newLines = 0;
     }
 
-    /**
-     * @return void
-     */
     private function indent(): void
     {
         $this->indentLevel++;
@@ -715,7 +639,6 @@ class BeautifyHTMLAdapted
 
     /**
      * @todo Currently unused.
-     * @return void
      */
     private function outdent(): void
     {
@@ -747,8 +670,6 @@ class BeautifyHTMLAdapted
 
     /**
      * Hook on options change.
-     *
-     * @return void
      */
     protected function optionsChanged(): void
     {
@@ -758,9 +679,6 @@ class BeautifyHTMLAdapted
 
     /**
      * Main process.
-     *
-     * @param string $input
-     * @return string
      */
     protected function parse(string $input): string
     {
