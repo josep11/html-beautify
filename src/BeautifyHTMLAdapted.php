@@ -527,7 +527,7 @@ class BeautifyHTMLAdapted
             $tag_offset = 1;
         }
         else {
-            $tag_offset = $tagComplete[2] === '#' ? 3 : 2;
+            $tag_offset = ($tagComplete[2] ?? '') === '#' ? 3 : 2;
         }
         $tag_check = strtolower(substr($tagComplete, $tag_offset, max($tagIndex-$tag_offset, 0)));
 
