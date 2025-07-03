@@ -150,7 +150,7 @@ class BeautifyHTMLAdapted
      * @param Closure|null $cssBeautify
      * @param Closure|null $jsBeautify
      */
-    public function __construct(array $options = null, Closure $cssBeautify = null, Closure $jsBeautify = null)
+    public function __construct(?array $options = null, ?Closure $cssBeautify = null, ?Closure $jsBeautify = null)
     {
         // Apply defaults, so that only unrecognized option keys maybe updated.
         $this->options = static::$defaultOptions;
@@ -645,7 +645,7 @@ class BeautifyHTMLAdapted
      * @param bool|null $force
      * @return void
      */
-    private function printNewLine(array &$arr, bool $force = null)
+    private function printNewLine(array &$arr, ?bool $force = null)
     {
         $this->lineCharCount = 0;
         if (!$arr || !count($arr)) {
@@ -731,7 +731,7 @@ class BeautifyHTMLAdapted
      * @param array|null $options
      * @return array|$this
      */
-    protected function options(array $options = null): array|static
+    protected function options(?array $options = null): array|static
     {
         if (is_null($options)) {
             return $this->options;
